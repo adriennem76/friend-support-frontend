@@ -5,7 +5,17 @@ export function getData() {
     return fetch("http://localhost:3000/users")
       .then(resp => resp.json())
       .then(data => {
-        dispatch({type: "DATA_LOADED", payload: data})
+        dispatch({type: types.LOAD_USERS_SUCCESS, payload: data})
       })
+  }
+}
+
+export function getUserData(id) {
+  return function(dispatch) {
+    return fetch(`http://localhost:3000/users/${id}`)
+    .then(resp => resp.json())
+    .then(data => {
+      dispatch({type: types.LOADED_USER, payload: data})
+    })
   }
 }

@@ -10,6 +10,7 @@ export class UserList extends Component {
 
   render(){
     return (
+      <div>
       <ul>
         {this.props.users.map(user => (
           <li key={"user"+user.id}>
@@ -17,13 +18,15 @@ export class UserList extends Component {
           </li>
         ))}
       </ul>
+      {this.props.currentUser.name}
+      </div>
     )
   }
 
 }
 
 const mapStateToProps = state => {
-  return {users: state.users}
+  return {users: state.users, currentUser: state.currentUser}
 }
 
 export default connect (
