@@ -7,11 +7,14 @@ const Navbar = () => {
       <Link to="/login">
       Log-in 
       </Link>
-      <Link to="/profile">
+      <Link to="/my-profile">
       Profile
       </Link>
       <Link to="/friends">
       Friends
+      </Link>
+      <Link to="/friend-search">
+      Find Friends
       </Link>
       
     </div>

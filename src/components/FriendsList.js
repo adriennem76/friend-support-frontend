@@ -1,5 +1,6 @@
 import React, {Component} from "react"
 import {connect} from "react-redux"
+import {Link} from 'react-router-dom'
 
 class FriendsList extends Component {
 
@@ -9,7 +10,9 @@ class FriendsList extends Component {
         <ul>
           {this.props.friends ? (<div>
             {this.props.friends.map(friend => 
-              <li>{friend.name}</li>
+              <Link to={`/profiles/${friend.id}`}>
+              {friend.name}
+              </Link>
             )}
             </div>) : (<div>Loading</div>)}
           </ul>

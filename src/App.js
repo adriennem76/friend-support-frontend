@@ -7,8 +7,10 @@ import UserProfile from "./containers/UserProfile"
 import Navbar from "./components/Navbar"
 import Login from "./components/Login"
 import FriendsList from "./components/FriendsList"
+import FriendProfile from "./containers/FriendProfile"
 import {getData} from "./actions/userActions"
 import {connect} from "react-redux"
+import FriendSearch from './components/FriendSearch';
 
 class App extends React.Component {
 
@@ -21,9 +23,11 @@ class App extends React.Component {
       <div className="App">
         <Router>
         <Navbar />
-        <Route path="/profile" component={UserProfile}/>
+        <Route path="/my-profile" component={UserProfile}/>
+        <Route path="/profiles/:id" render= {(routerProps) => <FriendProfile id={routerProps.match.params.id}/>}/>
         <Route path="/login" component={Login}/>
         <Route path="/friends" component={FriendsList}/>
+        <Route path="/friend-search" component={FriendSearch} />
         {/* <UserList /> */}
         </Router>
       </div>

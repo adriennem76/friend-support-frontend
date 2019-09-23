@@ -10,12 +10,16 @@ export function getData() {
   }
 }
 
-export function getUserData(id) {
-  return function(dispatch) {
-    return fetch(`http://localhost:3000/users/${id}`)
-    .then(resp => resp.json())
-    .then(data => {
-      dispatch({type: types.LOADED_USER, payload: data})
-    })
-  }
+export function addSupportItem(payload) {
+  return {type: types.ADD_SUPPORT_ITEM, payload}
 }
+
+// export function getUserData(id) {
+//   return function(dispatch) {
+//     return fetch(`http://localhost:3000/users/${id}`)
+//     .then(resp => resp.json())
+//     .then(data => {
+//       dispatch({type: types.LOADED_USER, payload: data})
+//     })
+//   }
+// }

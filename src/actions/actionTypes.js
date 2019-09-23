@@ -1,2 +1,2 @@
 export const LOAD_USERS_SUCCESS = "DATA_LOADED"
-export const LOADED_USER = "LOADED_USER"
+export const ADD_SUPPORT_ITEM = "ADD_SUPPORT_ITEM"
