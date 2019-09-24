@@ -15,7 +15,7 @@ export default class HomePage extends React.Component {
   render() {
     return (
       <div>
-        {this.state.login ? <Login/> : <SignUp history={this.props.history}/>}
+        {this.state.login ? <Login history={this.props.history}/> : <SignUp history={this.props.history}/>}
         <button onClick={this.clicked}>{this.state.login ? "Sign-Up" : "Login"}</button> 
       </div>
     )

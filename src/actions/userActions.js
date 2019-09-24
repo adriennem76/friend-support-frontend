@@ -18,6 +18,10 @@ export function signUp(payload) {
   return {type: types.SIGNUP_SUCCESS, payload}
 }
 
+export function login(payload) {
+  return {type: types.LOGIN_SUCCESS, payload}
+}
+
 // export function getUserData(id) {
 //   return function(dispatch) {
 //     return fetch(`http://localhost:3000/users/${id}`)
