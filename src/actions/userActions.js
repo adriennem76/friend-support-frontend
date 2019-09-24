@@ -22,6 +22,10 @@ export function login(payload) {
   return {type: types.LOGIN_SUCCESS, payload}
 }
 
+export function logout() {
+  return {type: types.LOGOUT_SUCCESS}
+}
+
 // export function getUserData(id) {
 //   return function(dispatch) {
 //     return fetch(`http://localhost:3000/users/${id}`)

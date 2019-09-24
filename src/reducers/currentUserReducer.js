@@ -7,6 +7,8 @@ export default function userReducer(state = initialState.currentUser, action) {
       return action.payload
     case types.LOGIN_SUCCESS:
       return action.payload
+    case types.LOGOUT_SUCCESS:
+      return {}
     case types.ADD_SUPPORT_ITEM:
       let user = {...state, support_items: [...state.support_items, action.payload]}
       return user

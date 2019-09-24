@@ -7,6 +7,8 @@ export default function loggedInReducer(state = initialState.loggedIn, action) {
       return true
     case types.LOGIN_SUCCESS:
       return true
+    case types.LOGOUT_SUCCESS:
+      return false
     default:
       return state;
   }

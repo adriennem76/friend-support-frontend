@@ -1,12 +1,16 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import {connect} from "react-redux"
 
-const Navbar = () => {
+
+const Navbar = (props) => {
   return (
     <div>
-      <Link to="/login">
+      {props.loggedIn ? (<Link to="/logout">
+      Log-out
+      </Link>) : (<Link to="/login">
       Log-in 
-      </Link>
+      </Link>)}
       <Link to="/my-profile">
       Profile
       </Link>
@@ -21,4 +25,10 @@ const Navbar = () => {
   )
 }
 
-export default Navbar
+const mapStateToProps = state => {
+  return {loggedIn: state.loggedIn}
+}
+
+export default connect (
+  mapStateToProps
+)(Navbar)

@@ -12,6 +12,7 @@ import {getData} from "./actions/userActions"
 import {connect} from "react-redux"
 import FriendSearch from './components/FriendSearch';
 import HomePage from "./containers/HomePage"
+import LogOut from "./components/LogOut"
 
 class App extends React.Component {
 
@@ -27,6 +28,7 @@ class App extends React.Component {
         <Route path="/my-profile" component={UserProfile}/>
         <Route path="/profiles/:id" render= {(routerProps) => <FriendProfile id={routerProps.match.params.id}/>}/>
         <Route path="/login" component={HomePage}/>
+        <Route path="/logout" component={LogOut}/>
         <Route path="/friends" component={FriendsList}/>
         <Route path="/friend-search" component={FriendSearch} />
         {/* <UserList /> */}
