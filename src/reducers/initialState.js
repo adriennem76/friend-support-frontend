@@ -1,4 +1,5 @@
 export default {
   users: [],
-  currentUser: {}
+  currentUser: {},
+  loggedIn: false
 }

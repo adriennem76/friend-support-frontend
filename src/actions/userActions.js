@@ -14,6 +14,10 @@ export function addSupportItem(payload) {
   return {type: types.ADD_SUPPORT_ITEM, payload}
 }
 
+export function signUp(payload) {
+  return {type: types.SIGNUP_SUCCESS, payload}
+}
+
 // export function getUserData(id) {
 //   return function(dispatch) {
 //     return fetch(`http://localhost:3000/users/${id}`)

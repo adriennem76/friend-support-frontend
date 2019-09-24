@@ -11,6 +11,7 @@ import FriendProfile from "./containers/FriendProfile"
 import {getData} from "./actions/userActions"
 import {connect} from "react-redux"
 import FriendSearch from './components/FriendSearch';
+import HomePage from "./containers/HomePage"
 
 class App extends React.Component {
 
@@ -25,7 +26,7 @@ class App extends React.Component {
         <Navbar />
         <Route path="/my-profile" component={UserProfile}/>
         <Route path="/profiles/:id" render= {(routerProps) => <FriendProfile id={routerProps.match.params.id}/>}/>
-        <Route path="/login" component={Login}/>
+        <Route path="/login" component={HomePage}/>
         <Route path="/friends" component={FriendsList}/>
         <Route path="/friend-search" component={FriendSearch} />
         {/* <UserList /> */}
