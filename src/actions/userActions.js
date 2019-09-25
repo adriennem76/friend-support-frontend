@@ -34,6 +34,10 @@ export function logout() {
   return {type: types.LOGOUT_SUCCESS}
 }
 
+export function acceptFriend(payload) {
+  return {type: types.ACCEPT_FRIEND, payload}
+}
+
 // export function getUserData(id) {
 //   return function(dispatch) {
 //     return fetch(`http://localhost:3000/users/${id}`)

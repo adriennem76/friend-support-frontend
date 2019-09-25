@@ -20,6 +20,11 @@ export default function userReducer(state = initialState.currentUser, action) {
       let deleteItems = state.support_items.filter(item => item.id !== action.payload)
       let userDelete = {...state, support_items: deleteItems}
       return userDelete
+    case types.ACCEPT_FRIEND:
+      let newFriends = [...state.friends, action.payload]
+      let newRequests = state.requested_friends.filter(friend => friend.id !== action.payload.id)
+      let userFriend = {...state, friends: newFriends, requested_friends: newRequests}
+      return userFriend
     default:
       return state;
   }

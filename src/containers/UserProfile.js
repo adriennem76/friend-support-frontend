@@ -2,6 +2,7 @@ import React, {Component} from "react"
 import {connect} from "react-redux"
 import SupportItem from "../components/SupportItem"
 import SupportForm from "../components/SupportForm"
+import {acceptFriend} from "../actions/userActions"
 
 class UserProfile extends Component {
 
@@ -22,6 +23,8 @@ class UserProfile extends Component {
       headers:{'Content-Type': 'application/json'},
       body: JSON.stringify({id: request.id})
     })
+    .then(resp => resp.json())
+    .then(data => this.props.acceptFriend(data))
   }
   decline = (e, id) =>{
     let request = this.props.currentUser.requests_received.find(request => request.user_id === id)
@@ -48,7 +51,7 @@ class UserProfile extends Component {
         {this.props.currentUser.support_items ? 
         (<div> 
         <ul>
-          {this.props.currentUser.support_items.map(item => <li><SupportItem item={item} edit={this.edit} history={this.props.history}/></li>)}
+          {this.props.currentUser.support_items.map(item => <li><SupportItem item={item} edit={this.edit} /></li>)}
         </ul></div>) : (<div>Loading</div>)}
         <h3>Friend Requests</h3>
         {this.props.currentUser.requested_friends ?
@@ -69,7 +72,11 @@ const mapStateToProps = state => {
   return {currentUser: state.currentUser}
 }
 
+const mapDispatchToProps = (dispatch) => {
+  return {acceptFriend: friend => dispatch(acceptFriend(friend))}
+}
 
 export default connect (
-  mapStateToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(UserProfile)
