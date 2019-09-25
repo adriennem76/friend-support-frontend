@@ -58,7 +58,7 @@ class SignUp extends Component {
 
         <div>
           <label>
-            <textarea 
+            <input
             placeholder="password" 
             type="text" name="password" 
             value={this.state.password} 
