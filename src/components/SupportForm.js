@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from "react-redux"
 import {withRouter} from 'react-router-dom'
-import {addSupportItem} from "../actions/userActions"
+import {addSupportItem, editSupportItem} from "../actions/userActions"
 
 class SupportForm extends React.Component {
   
@@ -11,6 +11,13 @@ class SupportForm extends React.Component {
     frequency_num: 0,
     frequency_period: "",
     user_id: this.props.currentUser.id
+  }
+
+  componentDidMount() {
+    if (this.props.item) {
+      const item = this.props.item
+      this.setState({category: item.category, description: item.description, frequency_num: item.frequency_num, frequency_period: item.frequency_period, id: item.id})
+    }
   }
 
   handleChange = (e) => {
@@ -35,6 +42,19 @@ class SupportForm extends React.Component {
   
   }
 
+  editSupportItem = (e) => {
+    e.preventDefault()
+
+    fetch(`http://localhost:3000/support_items/${this.state.id}`, {
+      method: "PATCH",
+      headers: {'Content-Type': 'application/json' },
+      body: JSON.stringify(this.state)
+    })
+    .then(resp => resp.json())
+    .then(data => this.props.editSupportItem(data))
+    .then(this.props.edit)
+  }
+
   render(){
 
     return (
@@ -42,7 +62,7 @@ class SupportForm extends React.Component {
     <div>
       {console.log(this.state)}
       <h3>New Support Item</h3>
-      <form onSubmit={this.createSupportItem}>
+      <form onSubmit={this.props.item ? this.editSupportItem : this.createSupportItem}>
 
         <div>
           <label>
@@ -99,7 +119,8 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return {addSupportItem: supportItem => dispatch(addSupportItem(supportItem))}
+  return {addSupportItem: supportItem => dispatch(addSupportItem(supportItem)),
+  editSupportItem: supportItem => dispatch(editSupportItem(supportItem))}
 }
 
 export default connect (

@@ -14,6 +14,10 @@ export function addSupportItem(payload) {
   return {type: types.ADD_SUPPORT_ITEM, payload}
 }
 
+export function editSupportItem(payload) {
+  return {type: types.EDIT_SUPPORT_ITEM, payload}
+}
+
 export function signUp(payload) {
   return {type: types.SIGNUP_SUCCESS, payload}
 }

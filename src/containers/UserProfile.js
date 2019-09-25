@@ -6,7 +6,9 @@ import SupportForm from "../components/SupportForm"
 class UserProfile extends Component {
 
   state = {
-    clicked: false
+    clicked: false,
+    edit: false,
+    item: {}
   }
 
   clicked = () => {
@@ -30,10 +32,18 @@ class UserProfile extends Component {
     })
   }
 
+  edit = (e, item) => {
+    this.setState({edit: !this.state.edit, item: item})
+  }
+
+  delete = () => {
+
+  }
+
   render() {
     return(
       <div>
-        {this.state.clicked ? <SupportForm clicked={this.clicked}/> : (<div>
+        {this.state.edit ? <SupportForm edit={this.edit} item={this.state.item}/> : this.state.clicked ? <SupportForm clicked={this.clicked}/> : (<div>
           {this.props.currentUser.name}
         <br/>
         <button onClick={this.clicked}>New Support Item</button>
@@ -42,7 +52,7 @@ class UserProfile extends Component {
         {this.props.currentUser.support_items ? 
         (<div> 
         <ul>
-          {this.props.currentUser.support_items.map(item => <li><SupportItem item={item}/></li>)}
+          {this.props.currentUser.support_items.map(item => <li><SupportItem item={item} edit={this.edit} delete={this.delete}/></li>)}
         </ul></div>) : (<div>Loading</div>)}
         <h3>Friend Requests</h3>
         {this.props.currentUser.requested_friends ?
