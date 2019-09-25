@@ -29,6 +29,8 @@ export default function userReducer(state = initialState.currentUser, action) {
       let deleteRequest = state.requested_friends.filter(friend => friend.id !== action.payload)
       let userDeleteRequest = {...state, requested_friends: deleteRequest}
       return userDeleteRequest
+    case types.SEND_REQUEST:
+      let newRequest = [state.requested_friends, action.payload
     default:
       return state;
   }

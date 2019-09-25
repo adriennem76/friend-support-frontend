@@ -1,5 +1,6 @@
 import React, {Component} from "react"
 import {connect} from "react-redux"
+import {sendRequest} from "../actions/userActions"
 
 class FriendSearch extends Component {
 
@@ -28,7 +29,7 @@ class FriendSearch extends Component {
       body: JSON.stringify(request)
     })
     .then(resp => resp.json())
-    .then(data => this.setState({search: "", pending: [...this.state.pending, data]} ))
+    .then(data => this.props.sendRequest(data))
   }
 
   render() {
@@ -62,6 +63,10 @@ class FriendSearch extends Component {
 
 const mapStateToProps = state => {
   return {users: state.users, currentUser: state.currentUser}
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {sendRequest: request => dispatch(sendRequest(request))}
 }
 
 export default connect (

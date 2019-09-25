@@ -42,6 +42,10 @@ export function declineFriend(payload) {
   return {type: types.DECLINE_FRIEND, payload}
 }
 
+export function sendRequest(payload) {
+  return {type: types.SEND_REQUEST, payload}
+}
+
 // export function getUserData(id) {
 //   return function(dispatch) {
 //     return fetch(`http://localhost:3000/users/${id}`)
