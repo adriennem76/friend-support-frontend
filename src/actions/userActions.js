@@ -18,6 +18,10 @@ export function editSupportItem(payload) {
   return {type: types.EDIT_SUPPORT_ITEM, payload}
 }
 
+export function deleteSupportItem(payload) {
+  return {type: types.DELETE_SUPPORT_ITEM, payload}
+}
+
 export function signUp(payload) {
   return {type: types.SIGNUP_SUCCESS, payload}
 }

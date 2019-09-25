@@ -36,10 +36,6 @@ class UserProfile extends Component {
     this.setState({edit: !this.state.edit, item: item})
   }
 
-  delete = () => {
-
-  }
-
   render() {
     return(
       <div>
@@ -52,7 +48,7 @@ class UserProfile extends Component {
         {this.props.currentUser.support_items ? 
         (<div> 
         <ul>
-          {this.props.currentUser.support_items.map(item => <li><SupportItem item={item} edit={this.edit} delete={this.delete}/></li>)}
+          {this.props.currentUser.support_items.map(item => <li><SupportItem item={item} edit={this.edit} history={this.props.history}/></li>)}
         </ul></div>) : (<div>Loading</div>)}
         <h3>Friend Requests</h3>
         {this.props.currentUser.requested_friends ?

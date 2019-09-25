@@ -16,6 +16,10 @@ export default function userReducer(state = initialState.currentUser, action) {
       let newItems = state.support_items.filter(item => item.id !== action.payload.id)
       let userEdit = {...state, support_items: [...newItems, action.payload]}
       return userEdit
+    case types.DELETE_SUPPORT_ITEM:
+      let deleteItems = state.support_items.filter(item => item.id !== action.payload)
+      let userDelete = {...state, support_items: deleteItems}
+      return userDelete
     default:
       return state;
   }
