@@ -2,7 +2,7 @@ import React, {Component} from "react"
 import {connect} from "react-redux"
 import SupportItem from "../components/SupportItem"
 import SupportForm from "../components/SupportForm"
-import {acceptFriend} from "../actions/userActions"
+import {acceptFriend, declineFriend} from "../actions/userActions"
 
 class UserProfile extends Component {
 
@@ -31,8 +31,9 @@ class UserProfile extends Component {
     fetch(`http://localhost:3000/friend_requests/${request.id}`, {
       method: 'DELETE',
       headers:{'Content-Type': 'application/json'},
-
     })
+    .then(console.log(id))
+    .then(this.props.declineFriend(id))
   }
 
   edit = (e, item) => {
@@ -73,7 +74,8 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return {acceptFriend: friend => dispatch(acceptFriend(friend))}
+  return {acceptFriend: friend => dispatch(acceptFriend(friend)),
+  declineFriend: friend => dispatch(declineFriend(friend))}
 }
 
 export default connect (

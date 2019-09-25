@@ -38,6 +38,10 @@ export function acceptFriend(payload) {
   return {type: types.ACCEPT_FRIEND, payload}
 }
 
+export function declineFriend(payload) {
+  return {type: types.DECLINE_FRIEND, payload}
+}
+
 // export function getUserData(id) {
 //   return function(dispatch) {
 //     return fetch(`http://localhost:3000/users/${id}`)
