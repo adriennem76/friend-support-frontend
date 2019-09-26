@@ -7,14 +7,23 @@ class FriendSearch extends Component {
   state = {
     search: "",
     users: [],
-    pending: []
+    pending: [],
+    noResults: false
   }
 
   submitHandler = (e) => {
     e.preventDefault()
     this.setState({pending: this.props.currentUser.pending_friends})
+    if (this.state.search !== "") {
     let foundUsers = this.props.users.filter(user => user.email.includes(this.state.search))
-    this.setState({users: foundUsers})
+    if (foundUsers < 1) {
+      this.setState({users: foundUsers, noResults: true})
+    } else {
+      this.setState({users: foundUsers, noResults: false})
+    }
+    } else {
+      this.setState({users: [], noResults: false})
+    }
   }
 
   handleChange = (e) => {
@@ -42,7 +51,8 @@ class FriendSearch extends Component {
         <input type="submit" value="Submit" />
       </form>
       <hr/>
-      {this.state.users.length > 0 ? 
+      {
+      this.state.users.length > 0 ? 
         (<div>
           <ul>
           {this.state.users.map(user => {
@@ -54,6 +64,7 @@ class FriendSearch extends Component {
             </li>)})}
           </ul>
         </div>) :
+        this.state.noResults ? (<div>No Results Found</div>) :
         (null)
         }
       </div>
@@ -70,5 +81,5 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect (
-  mapStateToProps
+  mapStateToProps, mapDispatchToProps
 )(FriendSearch)
