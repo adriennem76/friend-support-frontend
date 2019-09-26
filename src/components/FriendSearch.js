@@ -66,7 +66,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return {sendRequest: request => dispatch(sendRequest(request))}
+  return {sendRequest: friend => dispatch(sendRequest(friend))}
 }
 
 export default connect (

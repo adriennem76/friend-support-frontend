@@ -30,7 +30,9 @@ export default function userReducer(state = initialState.currentUser, action) {
       let userDeleteRequest = {...state, requested_friends: deleteRequest}
       return userDeleteRequest
     case types.SEND_REQUEST:
-      let newRequest = [state.requested_friends, action.payload
+      let newPendingFriends = [...state.pending_friends, action.payload]
+      let userNewPending = {...state, pending_friends: newPendingFriends}
+      return userNewPending
     default:
       return state;
   }
