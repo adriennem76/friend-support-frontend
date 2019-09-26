@@ -16,6 +16,7 @@ class FriendSearch extends Component {
     this.setState({pending: this.props.currentUser.pending_friends})
     if (this.state.search !== "") {
     let foundUsers = this.props.users.filter(user => user.email.includes(this.state.search))
+    foundUsers = foundUsers.filter(user => user.email !== this.props.currentUser.email)
     if (foundUsers < 1) {
       this.setState({users: foundUsers, noResults: true})
     } else {
