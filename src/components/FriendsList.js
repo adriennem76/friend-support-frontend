@@ -6,13 +6,13 @@ class FriendsList extends Component {
 
   render() {
     return (
-      <div>
+      <div className="ui container mainPage">
         <ul>
           {this.props.friends ? (<div>
             {this.props.friends.map(friend => 
-              <Link to={`/profiles/${friend.id}`}>
+              <li><Link to={`/profiles/${friend.id}`}>
               {friend.name}
-              </Link>
+              </Link></li>
             )}
             </div>) : (<div>Loading</div>)}
           </ul>

@@ -31,3 +31,16 @@
     transform: rotate(360deg);
   }
 }
+
+.mainPage {
+  margin-top: 70px;
+}
+
+.prompt {
+  border-radius: 500rem;
+  padding: .67857143em 1em;
+}
+
+.grid {
+  justify-content: center;
+}

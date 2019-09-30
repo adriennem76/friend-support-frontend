@@ -5,22 +5,27 @@ import {connect} from "react-redux"
 
 const Navbar = (props) => {
   return (
-    <div>
-      {props.loggedIn ? (<Link to="/logout">
-      Log-out
-      </Link>) : (<Link to="/login">
-      Log-in 
-      </Link>)}
-      <Link to="/my-profile">
+    <div className="ui tablet computer only padded grid">
+    <div className="ui top fixed borderless fluid huge menu">
+     
+      {props.loggedIn ? ( <div className="ui container"><Link to="/my-profile" className="item">
       Profile
       </Link>
-      <Link to="/friends">
+      <Link to="/friends" className="item">
       Friends
       </Link>
-      <Link to="/friend-search">
+      <Link to="/friend-search" className="item">
       Find Friends
       </Link>
+        <Link to="/logout" className="item">
+      Log-out
+      </Link></div>) : ( <div className="ui container"><Link to="/login" className="item">
+      Log-in 
+      </Link></div>)}
       
+      
+    </div>
+    
     </div>
   )
 }

@@ -1,6 +1,7 @@
 import React, {Component} from "react"
 import {connect} from "react-redux"
 import {sendRequest} from "../actions/userActions"
+import {Grid} from  'semantic-ui-react'
 
 class FriendSearch extends Component {
 
@@ -45,10 +46,14 @@ class FriendSearch extends Component {
   render() {
 
     return (
-      <div>
+      <Grid>
+      <Grid.Column width={6}>
+      <div className="ui category search mainPage">
+      <div className="ui icon input">
       <form onSubmit={this.submitHandler}>
-        <input type="text" name="search" placeholder="email"  value={this.state.search} 
+        <input className="prompt" type="text" name="search" placeholder="email"  value={this.state.search} 
         onChange={this.handleChange}/>
+        {/* <i aria-hidden="true" class="search icon"></i> */}
         <input type="submit" value="Submit" />
       </form>
       <hr/>
@@ -69,6 +74,9 @@ class FriendSearch extends Component {
         (null)
         }
       </div>
+      </div>
+      </Grid.Column>
+      </Grid>
     )
   }
 }

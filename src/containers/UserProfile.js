@@ -3,6 +3,7 @@ import {connect} from "react-redux"
 import SupportItem from "../components/SupportItem"
 import SupportForm from "../components/SupportForm"
 import {acceptFriend, declineFriend} from "../actions/userActions"
+import {Button, Card} from  'semantic-ui-react'
 
 class UserProfile extends Component {
 
@@ -42,24 +43,25 @@ class UserProfile extends Component {
 
   render() {
     return(
-      <div>
+      <div className="ui container mainPage">
         {this.state.edit ? <SupportForm edit={this.edit} item={this.state.item}/> : this.state.clicked ? <SupportForm clicked={this.clicked}/> : (<div>
-          {this.props.currentUser.name}
+          <h2 className="ui dividing header">{this.props.currentUser.name}</h2>
         <br/>
         <button onClick={this.clicked}>New Support Item</button>
         <br/>
         <h3>My Support Items:</h3>
+        <br/>
         {this.props.currentUser.support_items ? 
-        (<div> 
-        <ul>
-          {this.props.currentUser.support_items.map(item => <li><SupportItem item={item} edit={this.edit} /></li>)}
-        </ul></div>) : (<div>Loading</div>)}
+        (<div className="ui one cards"> 
+        <Card.Group centered>
+          {this.props.currentUser.support_items.map(item => <Card><SupportItem item={item} edit={this.edit} /></Card>)}
+        </Card.Group></div>) : (<div>Loading</div>)}
         <h3>Friend Requests</h3>
         {this.props.currentUser.requested_friends ?
         (<div>
-          <ul>
-            {this.props.currentUser.requested_friends.map(friend => <li>{friend.name} <button onClick={(e) => {this.accept(e,friend.id)}}>Accept</button><button onClick={(e) => {this.decline(e,friend.id)}}>Decline</button></li>)}
-          </ul>
+          <Card.Group centered>
+            {this.props.currentUser.requested_friends.map(friend => <Card><Card.Header>{friend.name}</Card.Header><Card.Content extra><Button basic color='green' onClick={(e) => {this.accept(e,friend.id)}}>Accept</Button><Button basic color='red' onClick={(e) => {this.decline(e,friend.id)}}>Decline</Button></Card.Content></Card>)}
+          </Card.Group>
           </div>) :
           (null)
         }

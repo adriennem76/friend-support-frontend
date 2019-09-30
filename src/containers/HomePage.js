@@ -14,9 +14,13 @@ export default class HomePage extends React.Component {
 
   render() {
     return (
-      <div>
+      <div style={{'height' : '100vh'}}className="ui center aligned middle aligned grid">
+      <div style={{'max-width' : '450px'}} className="column">
         {this.state.login ? <Login history={this.props.history}/> : <SignUp history={this.props.history}/>}
-        <button onClick={this.clicked}>{this.state.login ? "Sign-Up" : "Login"}</button> 
+        <div className="ui message" style={{'max-width' : '450px'}} >
+        <button onClick={this.clicked}>{this.state.login ? "Sign-Up" : "Login"}</button>
+        </div> 
+      </div>
       </div>
     )
   }

@@ -29,10 +29,12 @@ class Login extends Component {
 
   render() {
     return (
-      <div>
-      <form onSubmit={this.login}>
-
-        <div>
+      <div >
+      
+      <h3 className="ui teal center aligned header">Log-In</h3>
+      <form onSubmit={this.login} class="ui large form">
+        <div className="ui stacked segment">
+        <div className="field">
           <label>
             <input 
             placeholder="email"
@@ -43,7 +45,7 @@ class Login extends Component {
             </label>
         </div>
 
-        <div>
+        <div className="field">
           <label>
             <input 
             placeholder="password" 
@@ -53,8 +55,11 @@ class Login extends Component {
             </label>
         </div>
 
-          <input type="submit" value="Submit" />
+        <input type="submit" value="Submit" className="ui teal large fluid button"/>
+        
+        </div>
         </form>
+        
       </div>
     )
   }

@@ -32,9 +32,11 @@ class SignUp extends Component {
   render() {
     return (
       <div>
-      <form onSubmit={this.signUp}>
-
-        <div>
+      
+      <h3 className="ui teal center aligned header">Sign Up</h3>
+      <form onSubmit={this.signUp} class="ui large form">
+        <div className="ui stacked segment">
+        <div className="field">
           <label>
             <input 
             placeholder="Name" 
@@ -45,7 +47,7 @@ class SignUp extends Component {
             </label>
         </div>
 
-        <div>
+        <div className="field">
           <label>
             <input 
             placeholder="email"
@@ -56,7 +58,7 @@ class SignUp extends Component {
             </label>
         </div>
 
-        <div>
+        <div className="field">
           <label>
             <input
             placeholder="password" 
@@ -66,7 +68,8 @@ class SignUp extends Component {
             </label>
         </div>
 
-          <input type="submit" value="Submit" />
+          <input type="submit" value="Submit" className="ui teal large fluid button"/>
+        </div>
         </form>
       </div>
     )

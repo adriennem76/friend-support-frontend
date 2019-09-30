@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from "react-redux"
 import {deleteSupportItem} from "../actions/userActions"
+import {Button, Card} from  'semantic-ui-react'
 
 class SupportItem extends Component {
 
@@ -17,15 +18,23 @@ class SupportItem extends Component {
 
     const item = this.props.item
     return (
-      <div>
-        <br/>
+      <div className="card">
+        <div className="content">
         Category: {item.category}<br/>
+        </div>
+        <div className="content">
         I can offer: {item.description}<br/>
         This often: {item.frequency_num} time(s) per {item.frequency_period}
-        <button onClick={(e) => this.props.edit(e, item)}>Edit</button><button onClick={this.delete}>Delete</button>
+        {this.props.currentUser.id === item.user_id ?
+        (<div><button onClick={(e) => this.props.edit(e, item)}>Edit</button><button onClick={this.delete}>Delete</button></div>) : (null)}
+        </div>
       </div>
     )
   }
+}
+
+const mapStateToProps = state => {
+  return {currentUser: state.currentUser}
 }
 
 const mapDispatchToProps = (dispatch) => {
@@ -33,5 +42,5 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect (
-  null, mapDispatchToProps
+  mapStateToProps, mapDispatchToProps
 )(SupportItem)

@@ -1,5 +1,6 @@
 import React, {Component} from "react"
 import SupportItem from "../components/SupportItem"
+import {Card} from  'semantic-ui-react'
 
 export default class FriendProfile extends Component {
 
@@ -16,15 +17,15 @@ export default class FriendProfile extends Component {
   render() {
     const friend = this.state.friend
     return(
-      <div>
+      <div className="ui container mainPage">
         {friend.support_items ? 
         (<div> 
-        {friend.name}
+          <h2 className="ui dividing header">{friend.name}</h2>
         <br/>
         <h3>{friend.name}'s Support Items:</h3>
-        <ul>
-          {friend.support_items.map(item => <li><SupportItem item={item}/></li>)}
-        </ul></div>) : (<div>Loading</div>)}
+        <Card.Group centered>
+          {friend.support_items.map(item => <Card><SupportItem item={item}/></Card>)}
+        </Card.Group></div>) : (<div>Loading</div>)}
       </div>
     )
   }
