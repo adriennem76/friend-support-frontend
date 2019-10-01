@@ -1,12 +1,14 @@
 import React, {Component} from "react"
 import {connect} from "react-redux"
 import {login} from "../actions/userActions"
+import { Button, Message } from 'semantic-ui-react'
 
 class Login extends Component {
 
   state = {
     email: "",
-    password: ""
+    password: "",
+    error: false
   }
 
   handleChange = (e) => {
@@ -15,16 +17,23 @@ class Login extends Component {
 
   login = (e) => {
     e.preventDefault()
-    
+    let user = {email: this.state.email, password: this.state.password}
     fetch("http://localhost:3000/login", {
       method: "POST",
       headers: {'Content-Type': 'application/json',
       'accept': 'application/json' },
-      body: JSON.stringify(this.state)
+      body: JSON.stringify(user)
     })
     .then(resp => resp.json())
-    .then(data => this.props.login(data))
-    .then(this.props.history.push('/my-profile'))
+    .then(data => {
+      if (data.id) {
+        this.props.history.push('/my-profile')
+        return this.props.login(data)
+      } else {
+        this.setState({error: true})
+      }
+    })
+    
   }
 
   render() {
@@ -59,7 +68,9 @@ class Login extends Component {
         
         </div>
         </form>
-        
+        {this.state.error ? (<Message error
+        header="Error"
+        content="Incorrect email or password."/>) : null}
       </div>
     )
   }
