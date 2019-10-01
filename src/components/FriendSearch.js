@@ -1,20 +1,21 @@
 import React, {Component} from "react"
 import {connect} from "react-redux"
 import {sendRequest} from "../actions/userActions"
-import {Grid} from  'semantic-ui-react'
+import {Grid, Button} from  'semantic-ui-react'
 
 class FriendSearch extends Component {
 
   state = {
     search: "",
     users: [],
-    pending: [],
-    noResults: false
+    // pending: [],
+    noResults: false,
+    loading: false
   }
 
   submitHandler = (e) => {
     e.preventDefault()
-    this.setState({pending: this.props.currentUser.pending_friends})
+    // this.setState({pending: this.props.currentUser.pending_friends})
     if (this.state.search !== "") {
     let foundUsers = this.props.users.filter(user => user.email.includes(this.state.search))
     foundUsers = foundUsers.filter(user => user.email !== this.props.currentUser.email)
@@ -33,6 +34,7 @@ class FriendSearch extends Component {
   }
 
   addFriend = (id) => {
+    this.setState({loading: true})
     let request = {user_id: this.props.currentUser.id, friend_id: id}
     fetch("http://localhost:3000/friend_requests", {
       method: "POST",
@@ -41,6 +43,7 @@ class FriendSearch extends Component {
     })
     .then(resp => resp.json())
     .then(data => this.props.sendRequest(data))
+    .then(this.setState({loading: false}))
   }
 
   render() {
@@ -53,9 +56,9 @@ class FriendSearch extends Component {
       <form onSubmit={this.submitHandler}>
         <input className="prompt" type="text" name="search" placeholder="email"  value={this.state.search} 
         onChange={this.handleChange}/>
-        {/* <i aria-hidden="true" class="search icon"></i> */}
-        <input type="submit" value="Submit" />
+        <Button type="submit">Submit</Button>
       </form>
+      </div>
       <hr/>
       {
       this.state.users.length > 0 ? 
@@ -64,16 +67,15 @@ class FriendSearch extends Component {
           {this.state.users.map(user => {
           return ( 
             <li>{user.name}
-            {this.state.pending.some(userObj => userObj.email === user.email) ? (<div>Friend Request Sent</div>) : 
+            {this.props.pending.some(userObj => userObj.email === user.email) ? (<div>Friend Request Sent</div>) : 
             this.props.currentUser.friends.some(userObj => userObj.email === user.email) ? (<div>Friend</div>) : 
-            (<button onClick={() => this.addFriend(user.id)}>Add Friend</button>)}
+            (<Button className={this.state.loading ? "loading button" : null} onClick={() => this.addFriend(user.id)}>Add Friend</Button>)}
             </li>)})}
           </ul>
         </div>) :
         this.state.noResults ? (<div>No Results Found</div>) :
         (null)
         }
-      </div>
       </div>
       </Grid.Column>
       </Grid>
@@ -82,7 +84,7 @@ class FriendSearch extends Component {
 }
 
 const mapStateToProps = state => {
-  return {users: state.users, currentUser: state.currentUser}
+  return {users: state.users, currentUser: state.currentUser, pending: state.currentUser.pending_friends}
 }
 
 const mapDispatchToProps = (dispatch) => {

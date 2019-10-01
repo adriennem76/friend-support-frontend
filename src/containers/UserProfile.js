@@ -10,7 +10,8 @@ class UserProfile extends Component {
   state = {
     clicked: false,
     edit: false,
-    item: {}
+    item: {},
+    loading: false
   }
 
   clicked = () => {
@@ -18,6 +19,8 @@ class UserProfile extends Component {
   }
 
   accept = (e,id) => {
+    e.target.className = "ui loading green basic button"
+    console.dir(e.target)
     let request = this.props.currentUser.requests_received.find(request => request.user_id === id)
     fetch(`http://localhost:3000/friend_requests/${request.id}`, {
       method: 'PATCH',
@@ -26,7 +29,14 @@ class UserProfile extends Component {
     })
     .then(resp => resp.json())
     .then(data => this.props.acceptFriend(data))
+    // .then(this.setState({loading: true}))
+    // .then(this.completed(e))
   }
+
+  // completed = (e) => {
+  //   e.target.className = "ui green basic button"
+  // }
+
   decline = (e, id) =>{
     let request = this.props.currentUser.requests_received.find(request => request.user_id === id)
     fetch(`http://localhost:3000/friend_requests/${request.id}`, {
@@ -60,7 +70,7 @@ class UserProfile extends Component {
         {this.props.currentUser.requested_friends ?
         (<div>
           <Card.Group centered>
-            {this.props.currentUser.requested_friends.map(friend => <Card><Card.Header>{friend.name}</Card.Header><Card.Content extra><Button basic color='green' onClick={(e) => {this.accept(e,friend.id)}}>Accept</Button><Button basic color='red' onClick={(e) => {this.decline(e,friend.id)}}>Decline</Button></Card.Content></Card>)}
+            {this.props.currentUser.requested_friends.map(friend => <Card><Card.Header>{friend.name}</Card.Header><Card.Content extra><Button basic color='green' onClick={(e) => {this.accept(e,friend.id)}} >Accept</Button><Button basic color='red' onClick={(e) => {this.decline(e,friend.id)}}>Decline</Button></Card.Content></Card>)}
           </Card.Group>
           </div>) :
           (null)

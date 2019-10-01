@@ -11,7 +11,8 @@ class SupportForm extends React.Component {
     description: "",
     frequency_num: 0,
     frequency_period: "",
-    user_id: this.props.currentUser.id
+    user_id: this.props.currentUser.id,
+    loading: false
   }
 
   componentDidMount() {
@@ -31,11 +32,12 @@ class SupportForm extends React.Component {
 
   createSupportItem = (e) => {
     e.preventDefault()
-    
+    this.setState({loading: true})
+    let supportItem = {category: this.state.category, description: this.state.description, frequency_num: this.state.frequency_num, frequency_period: this.state.frequency_period, user_id: this.state.user_id}
     fetch("http://localhost:3000/support_items", {
       method: "POST",
       headers: {'Content-Type': 'application/json' },
-      body: JSON.stringify(this.state)
+      body: JSON.stringify(supportItem)
     })
     .then(resp => resp.json())
     .then(data => this.props.addSupportItem(data))
@@ -45,11 +47,12 @@ class SupportForm extends React.Component {
 
   editSupportItem = (e) => {
     e.preventDefault()
-
+    this.setState({loading: true})
+    let supportItem = {category: this.state.category, description: this.state.description, frequency_num: this.state.frequency_num, frequency_period: this.state.frequency_period, user_id: this.state.user_id}
     fetch(`http://localhost:3000/support_items/${this.state.id}`, {
       method: "PATCH",
       headers: {'Content-Type': 'application/json' },
-      body: JSON.stringify(this.state)
+      body: JSON.stringify(supportItem)
     })
     .then(resp => resp.json())
     .then(data => this.props.editSupportItem(data))
@@ -108,7 +111,7 @@ class SupportForm extends React.Component {
             </label>
         </Form.Field>
 
-          <Button type="submit" value="Submit">Submit</Button>
+          <Button type="submit" className={this.state.loading ? "loading button" : null}>Submit</Button>
         </Form>
         <Button onClick={this.props.clicked}>Close</Button>
       </div>)

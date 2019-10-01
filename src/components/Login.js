@@ -8,7 +8,8 @@ class Login extends Component {
   state = {
     email: "",
     password: "",
-    error: false
+    error: false,
+    loading: false
   }
 
   handleChange = (e) => {
@@ -17,6 +18,7 @@ class Login extends Component {
 
   login = (e) => {
     e.preventDefault()
+    this.setState({loading: true})
     let user = {email: this.state.email, password: this.state.password}
     fetch("http://localhost:3000/login", {
       method: "POST",
@@ -30,7 +32,7 @@ class Login extends Component {
         this.props.history.push('/my-profile')
         return this.props.login(data)
       } else {
-        this.setState({error: true})
+        this.setState({error: true, loading: false})
       }
     })
     
@@ -64,7 +66,7 @@ class Login extends Component {
             </label>
         </div>
 
-        <input type="submit" value="Submit" className="ui teal large fluid button"/>
+        <Button type="submit" className={this.state.loading? "ui loading teal large fluid  button" : "ui teal large fluid button"}>Submit</Button>
         
         </div>
         </form>
