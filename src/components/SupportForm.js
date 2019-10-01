@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from "react-redux"
 import {withRouter} from 'react-router-dom'
 import {addSupportItem, editSupportItem} from "../actions/userActions"
+import { Button, Checkbox, Form } from 'semantic-ui-react'
 
 class SupportForm extends React.Component {
   
@@ -62,9 +63,9 @@ class SupportForm extends React.Component {
     <div>
       {console.log(this.state)}
       <h3>New Support Item</h3>
-      <form onSubmit={this.props.item ? this.editSupportItem : this.createSupportItem}>
+      <Form onSubmit={this.props.item ? this.editSupportItem : this.createSupportItem}>
 
-        <div>
+        <Form.Field>
           <label>
             <input 
             placeholder="Category" 
@@ -73,9 +74,9 @@ class SupportForm extends React.Component {
             value={this.state.category} 
             onChange={this.handleChange}/>
             </label>
-        </div>
+        </Form.Field>
 
-        <div>
+        <Form.Field>
           <label>
             <textarea 
             placeholder="Support Description" 
@@ -83,9 +84,9 @@ class SupportForm extends React.Component {
             value={this.state.description} 
             onChange={this.handleChange}/>
             </label>
-        </div>
+        </Form.Field>
 
-        <div>
+        <Form.Field>
           <label>
             <input 
             placeholder = '0' 
@@ -94,9 +95,9 @@ class SupportForm extends React.Component {
             value={(this.state.frequency_num)} 
             onChange={this.handleChange}/>
             </label>
-        </div>
+        </Form.Field>
 
-        <div>
+        <Form.Field>
           <label>
             <input 
             placeholder="week" 
@@ -105,11 +106,11 @@ class SupportForm extends React.Component {
             value={this.state.frequency_period}
             onChange={this.handleChange} />
             </label>
-        </div>
+        </Form.Field>
 
-          <input type="submit" value="Submit" />
-        </form>
-        <button onClick={this.props.clicked}>Close</button>
+          <Button type="submit" value="Submit">Submit</Button>
+        </Form>
+        <Button onClick={this.props.clicked}>Close</Button>
       </div>)
   }
 }
