@@ -1,21 +1,24 @@
 import React, {Component} from "react"
 import {connect} from "react-redux"
 import {Link} from 'react-router-dom'
+import {List} from  'semantic-ui-react'
 
 class FriendsList extends Component {
 
   render() {
     return (
       <div className="ui container mainPage">
-        <ul>
-          {this.props.friends ? (<div>
+          {this.props.friends ? (<List relaxed divided verticalAlign='middle'>
             {this.props.friends.map(friend => 
-              <li><Link to={`/profiles/${friend.id}`}>
-              {friend.name}
-              </Link></li>
+              <List.Item>
+                <List.Header>
+                <Link to={`/profiles/${friend.id}`}>
+                {friend.name}
+                </Link>
+                </List.Header>
+              </List.Item>
             )}
-            </div>) : (<div>Loading</div>)}
-          </ul>
+            </List>) : (<div>Loading</div>)}
       </div>
     )
   }

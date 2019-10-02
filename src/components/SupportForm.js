@@ -65,55 +65,49 @@ class SupportForm extends React.Component {
       
     <div>
       {console.log(this.state)}
-      <h3>New Support Item</h3>
-      <Form onSubmit={this.props.item ? this.editSupportItem : this.createSupportItem}>
+      <h3>{this.props.item ? "Edit Support Item" : "New Support Item"}</h3>
+      <Form onSubmit={this.props.item ? this.editSupportItem : this.createSupportItem}style={{'maxWidth' : '450px'}}>
 
         <Form.Field>
-          <label>
+          <label>Category</label>
             <input 
             placeholder="Category" 
             type="text" 
             name="category" 
             value={this.state.category} 
             onChange={this.handleChange}/>
-            </label>
         </Form.Field>
 
         <Form.Field>
-          <label>
+          <label>Support Description</label>
             <textarea 
             placeholder="Support Description" 
             type="text" name="description" 
             value={this.state.description} 
             onChange={this.handleChange}/>
-            </label>
         </Form.Field>
 
         <Form.Field>
-          <label>
+          <label className="frequency">Number of times</label>
             <input 
             placeholder = '0' 
             type="text" 
             name="frequency_num" 
             value={(this.state.frequency_num)} 
             onChange={this.handleChange}/>
-            </label>
+          <label className="frequency">per</label>
+          <input 
+          placeholder="day/week/month" 
+          type="text" 
+          name="frequency_period" 
+          value={this.state.frequency_period}
+          onChange={this.handleChange} />
         </Form.Field>
 
-        <Form.Field>
-          <label>
-            <input 
-            placeholder="week" 
-            type="text" 
-            name="frequency_period" 
-            value={this.state.frequency_period}
-            onChange={this.handleChange} />
-            </label>
-        </Form.Field>
 
-          <Button type="submit" className={this.state.loading ? "loading button" : null}>Submit</Button>
+          <Button type="submit" className={this.state.loading ? "loading button" : null} style={{'marginBottom' : '1em'}}>Submit</Button>
         </Form>
-        <Button onClick={this.props.clicked}>Close</Button>
+        <Button onClick={this.props.item? this.props.edit : this.props.clicked}>Cancel</Button>
       </div>)
   }
 }

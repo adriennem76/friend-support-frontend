@@ -1,6 +1,7 @@
 import React from "react"
 import Login from "../components/Login"
 import SignUp from "../components/SignUp"
+import {Button} from 'semantic-ui-react'
 
 export default class HomePage extends React.Component {
 
@@ -15,10 +16,10 @@ export default class HomePage extends React.Component {
   render() {
     return (
       <div style={{'height' : '100vh'}}className="ui center aligned middle aligned grid">
-      <div style={{'max-width' : '450px'}} className="column">
+      <div style={{'maxWidth' : '450px'}} className="column">
         {this.state.login ? <Login history={this.props.history}/> : <SignUp history={this.props.history}/>}
-        <div className="ui message" style={{'max-width' : '450px'}} >
-        <button onClick={this.clicked}>{this.state.login ? "Sign-Up" : "Login"}</button>
+        <div className="ui message" style={{'maxWidth' : '450px'}} >
+        <Button onClick={this.clicked}>{this.state.login ? "Sign-Up" : "Login"}</Button>
         </div> 
       </div>
       </div>

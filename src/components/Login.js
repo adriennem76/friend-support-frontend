@@ -60,7 +60,7 @@ class Login extends Component {
           <label>
             <input 
             placeholder="password" 
-            type="text" name="password" 
+            type="password" name="password" 
             value={this.state.password} 
             onChange={this.handleChange}/>
             </label>

@@ -18,17 +18,17 @@ class SupportItem extends Component {
 
     const item = this.props.item
     return (
-      <div className="card">
-        <div className="content">
-        Category: {item.category}<br/>
+      <Card>
+        <div className="content cardContent">
+        <span className="cardTitle">Category:</span> {item.category}<br/>
         </div>
-        <div className="content">
-        I can offer: {item.description}<br/>
-        This often: {item.frequency_num} time(s) per {item.frequency_period}
+        <div className="content cardContent">
+        <span className="cardTitle">I can offer:</span> {item.description}<br/>
+        <span className="cardTitle">This often:</span> {item.frequency_num} time(s) per {item.frequency_period}
+        </div>
         {this.props.currentUser.id === item.user_id ?
-        (<div><button onClick={(e) => this.props.edit(e, item)}>Edit</button><button onClick={this.delete}>Delete</button></div>) : (null)}
-        </div>
-      </div>
+        (<Card.Content extra><Button onClick={(e) => this.props.edit(e, item)}>Edit</Button><Button onClick={this.delete}>Delete</Button></Card.Content>) : (null)}
+      </Card>
     )
   }
 }

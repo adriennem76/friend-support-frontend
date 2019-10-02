@@ -44,3 +44,41 @@
 .grid {
   justify-content: center;
 }
+
+Form {
+  margin: auto;
+}
+
+.frequency {
+  display: inline-block !important;
+  margin: .75em 0 !important;
+}
+
+input[name="frequency_num"]{
+  margin: 0 1em !important;
+  max-width: 15%;
+}
+
+input[name="frequency_period"]{
+  margin-left: 1em !important;
+  max-width: 45%;
+}
+
+.friendlist {
+  text-align: left;
+}
+
+.friendAction {
+  position: absolute;
+  right: 0;
+}
+
+.cardTitle {
+  position: absolute;
+  left: 5%;
+  font-weight: bold;
+}
+
+.cardContent {
+  margin-left: 20% !important;
+}

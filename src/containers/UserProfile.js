@@ -57,20 +57,20 @@ class UserProfile extends Component {
         {this.state.edit ? <SupportForm edit={this.edit} item={this.state.item}/> : this.state.clicked ? <SupportForm clicked={this.clicked}/> : (<div>
           <h2 className="ui dividing header">{this.props.currentUser.name}</h2>
         <br/>
-        <button onClick={this.clicked}>New Support Item</button>
+        <Button onClick={this.clicked}>New Support Item</Button>
         <br/>
         <h3>My Support Items:</h3>
         <br/>
         {this.props.currentUser.support_items ? 
-        (<div className="ui one cards"> 
+        (<div className="ui three cards"> 
         <Card.Group centered>
-          {this.props.currentUser.support_items.map(item => <Card><SupportItem item={item} edit={this.edit} /></Card>)}
+          {this.props.currentUser.support_items.map(item => <SupportItem item={item} edit={this.edit} />)}
         </Card.Group></div>) : (<div>Loading</div>)}
-        <h3>Friend Requests</h3>
+        <h3>Friend Requests:</h3>
         {this.props.currentUser.requested_friends ?
         (<div>
           <Card.Group centered>
-            {this.props.currentUser.requested_friends.map(friend => <Card><Card.Header>{friend.name}</Card.Header><Card.Content extra><Button basic color='green' onClick={(e) => {this.accept(e,friend.id)}} >Accept</Button><Button basic color='red' onClick={(e) => {this.decline(e,friend.id)}}>Decline</Button></Card.Content></Card>)}
+            {this.props.currentUser.requested_friends.map(friend => <Card><Card.Content header={friend.name}/><Card.Content extra><Button basic color='green' onClick={(e) => {this.accept(e,friend.id)}} >Accept</Button><Button basic color='red' onClick={(e) => {this.decline(e,friend.id)}}>Decline</Button></Card.Content></Card>)}
           </Card.Group>
           </div>) :
           (null)

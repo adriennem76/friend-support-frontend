@@ -1,7 +1,7 @@
 import React, {Component} from "react"
 import {connect} from "react-redux"
 import {sendRequest} from "../actions/userActions"
-import {Grid, Button} from  'semantic-ui-react'
+import {Grid, Button, List} from  'semantic-ui-react'
 
 class FriendSearch extends Component {
 
@@ -56,22 +56,25 @@ class FriendSearch extends Component {
       <form onSubmit={this.submitHandler}>
         <input className="prompt" type="text" name="search" placeholder="email"  value={this.state.search} 
         onChange={this.handleChange}/>
-        <Button type="submit">Submit</Button>
+        <Button type="submit" style={{'marginLeft' : '1em'}}>Search</Button>
       </form>
       </div>
-      <hr/>
+      <hr style={{'marginBottom' : '2em'}}/>
       {
       this.state.users.length > 0 ? 
         (<div>
-          <ul>
+          <List divided verticalAlign='middle'>
           {this.state.users.map(user => {
           return ( 
-            <li>{user.name}
-            {this.props.pending.some(userObj => userObj.email === user.email) ? (<div>Friend Request Sent</div>) : 
-            this.props.currentUser.friends.some(userObj => userObj.email === user.email) ? (<div>Friend</div>) : 
-            (<Button className={this.state.loading ? "loading button" : null} onClick={() => this.addFriend(user.id)}>Add Friend</Button>)}
-            </li>)})}
-          </ul>
+            <List.Item>
+              <List.Content className="friendlist">
+              {user.name}
+            {this.props.pending.some(userObj => userObj.email === user.email) ? (<span className="friendAction">Friend Request Sent</span>) : 
+            this.props.currentUser.friends.some(userObj => userObj.email === user.email) ? (<span className="friendAction">Friend</span>) : 
+            (<span className="friendAction"><Button className={this.state.loading ? "loading button" : null} onClick={() => this.addFriend(user.id)} style={{'marginLeft' : '1em'}}>Add Friend</Button></span>)}
+            </List.Content>
+            </List.Item>)})}
+          </List>
         </div>) :
         this.state.noResults ? (<div>No Results Found</div>) :
         (null)
