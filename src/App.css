@@ -114,3 +114,8 @@ body {
   font-size: large;
   color: #525155 !important;
 }
+
+.ui.menu .header.item {
+  font-family: 'Kalam', cursive !important;
+}
+

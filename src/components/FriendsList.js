@@ -1,7 +1,7 @@
 import React, {Component} from "react"
 import {connect} from "react-redux"
 import {Link} from 'react-router-dom'
-import {List} from  'semantic-ui-react'
+import {List, Dimmer, Loader} from  'semantic-ui-react'
 
 class FriendsList extends Component {
 
@@ -18,7 +18,7 @@ class FriendsList extends Component {
                 </List.Header>
               </List.Item>
             )}
-            </List>) : (<div>Loading</div>)}
+            </List>) : (<Dimmer active><Loader/></Dimmer>)}
       </div>
     )
   }

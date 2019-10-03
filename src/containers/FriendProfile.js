@@ -1,6 +1,6 @@
 import React, {Component} from "react"
 import SupportItem from "../components/SupportItem"
-import {Card} from  'semantic-ui-react'
+import {Card, Loader, Dimmer} from  'semantic-ui-react'
 
 export default class FriendProfile extends Component {
 
@@ -26,7 +26,7 @@ export default class FriendProfile extends Component {
         <br/>
         <Card.Group centered className="ui three cards">
           {friend.support_items.map(item => <SupportItem item={item}/>)}
-        </Card.Group></div>) : (<div>Loading</div>)}
+        </Card.Group></div>) : (<Dimmer active><Loader/></Dimmer>)}
       </div>
     )
   }

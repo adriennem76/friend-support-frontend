@@ -7,7 +7,7 @@ const Navbar = (props) => {
   return (
     <div className="ui tablet computer only padded grid">
     <div className="ui top fixed borderless fluid huge menu">
-     
+      <div className="header item">Community Care</div>
       {props.loggedIn ? ( <div className="ui container"><Link to="/my-profile" className="item">
       Profile
       </Link>
