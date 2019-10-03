@@ -23,8 +23,9 @@ export default class FriendProfile extends Component {
           <h2 className="ui dividing header">{friend.name}</h2>
         <br/>
         <h3>{friend.name}'s Support Items:</h3>
-        <Card.Group centered>
-          {friend.support_items.map(item => <Card><SupportItem item={item}/></Card>)}
+        <br/>
+        <Card.Group centered className="ui three cards">
+          {friend.support_items.map(item => <SupportItem item={item}/>)}
         </Card.Group></div>) : (<div>Loading</div>)}
       </div>
     )

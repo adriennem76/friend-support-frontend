@@ -66,6 +66,7 @@ input[name="frequency_period"]{
 
 .friendlist {
   text-align: left;
+  color: #525155 !important;
 }
 
 .friendAction {
@@ -81,4 +82,35 @@ input[name="frequency_period"]{
 
 .cardContent {
   margin-left: 20% !important;
+}
+
+.header, h3 {
+  color: #525155 !important;
+}
+
+body {
+  background-color: #B9D8C2 !important;
+}
+
+.ui.list>.item .header {
+  margin: .5em !important;
+  font-size: large;
+}
+
+.ui.list>.item>.content {
+  font-size: large;
+}
+
+.addFriend {
+  margin: -.5em !important;
+  margin-left: 1em;
+}
+
+.ui.form .field>label {
+  color: #525155 !important;
+}
+
+.noResults {
+  font-size: large;
+  color: #525155 !important;
 }

@@ -71,12 +71,12 @@ class FriendSearch extends Component {
               {user.name}
             {this.props.pending.some(userObj => userObj.email === user.email) ? (<span className="friendAction">Friend Request Sent</span>) : 
             this.props.currentUser.friends.some(userObj => userObj.email === user.email) ? (<span className="friendAction">Friend</span>) : 
-            (<span className="friendAction"><Button className={this.state.loading ? "loading button" : null} onClick={() => this.addFriend(user.id)} style={{'marginLeft' : '1em'}}>Add Friend</Button></span>)}
+            (<span className="friendAction"><Button className={this.state.loading ? "loading button" : null} onClick={() => this.addFriend(user.id)} className='addFriend'>Add Friend</Button></span>)}
             </List.Content>
             </List.Item>)})}
           </List>
         </div>) :
-        this.state.noResults ? (<div>No Results Found</div>) :
+        this.state.noResults ? (<div className="noResults">No Results Found</div>) :
         (null)
         }
       </div>

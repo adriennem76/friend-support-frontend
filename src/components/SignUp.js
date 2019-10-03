@@ -43,7 +43,7 @@ class SignUp extends Component {
     return (
       <div>
       
-      <h3 className="ui teal center aligned header">Sign Up</h3>
+      <h3 className="ui center aligned header">Sign Up</h3>
       <form onSubmit={this.signUp} class="ui large form">
         <div className="ui stacked segment">
         <div className="field">

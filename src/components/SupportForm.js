@@ -105,7 +105,7 @@ class SupportForm extends React.Component {
         </Form.Field>
 
 
-          <Button type="submit" className={this.state.loading ? "loading button" : null} style={{'marginBottom' : '1em'}}>Submit</Button>
+          <Button type="submit" className={this.state.loading ? "loading button" : null} style={{'margin' : '1em'}}>Submit</Button>
         </Form>
         <Button onClick={this.props.item? this.props.edit : this.props.clicked}>Cancel</Button>
       </div>)

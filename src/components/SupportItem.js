@@ -27,7 +27,7 @@ class SupportItem extends Component {
         <span className="cardTitle">This often:</span> {item.frequency_num} time(s) per {item.frequency_period}
         </div>
         {this.props.currentUser.id === item.user_id ?
-        (<Card.Content extra><Button onClick={(e) => this.props.edit(e, item)}>Edit</Button><Button onClick={this.delete}>Delete</Button></Card.Content>) : (null)}
+        (<Card.Content extra><Button basic color='green' onClick={(e) => this.props.edit(e, item)}>Edit</Button><Button basic color='red' onClick={this.delete}>Delete</Button></Card.Content>) : (null)}
       </Card>
     )
   }

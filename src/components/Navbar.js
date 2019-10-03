@@ -17,11 +17,12 @@ const Navbar = (props) => {
       <Link to="/friend-search" className="item">
       Find Friends
       </Link>
+      <div className="right menu">
         <Link to="/logout" className="item">
       Log-out
-      </Link></div>) : ( <div className="ui container"><Link to="/login" className="item">
+      </Link></div></div>) : ( <div className="ui container"><div className="right menu"><Link to="/login" className="item">
       Log-in 
-      </Link></div>)}
+      </Link></div></div>)}
       
       
     </div>
