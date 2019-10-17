@@ -17,13 +17,13 @@ Then run `npm start` in the project directory.
 
 (When you are prompted to run the app on another port enter 'yes')
 
-## Demo
+<!-- ## Demo
 
 Video Demo: 
 
 ## Screenshots
 
-<!-- ![Screen Shot 2019-07-12 at 11 00 28 AM](https://user-images.githubusercontent.com/50639575/61140762-0e19c700-a49a-11e9-88a4-a24d1e3ef7b6.png)  -->
+![Screen Shot 2019-07-12 at 11 00 28 AM](https://user-images.githubusercontent.com/50639575/61140762-0e19c700-a49a-11e9-88a4-a24d1e3ef7b6.png)  -->
 
 
 ## Tech/Framework Used
