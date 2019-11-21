@@ -20,7 +20,7 @@ class UserProfile extends Component {
 
   accept = (e,id) => {
     e.target.className = "ui loading green basic button"
-    console.dir(e.target)
+    // console.dir(e.target)
     let request = this.props.currentUser.requests_received.find(request => request.user_id === id)
     fetch(`http://localhost:3000/friend_requests/${request.id}`, {
       method: 'PATCH',
