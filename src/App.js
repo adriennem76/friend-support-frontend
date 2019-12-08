@@ -25,6 +25,7 @@ class App extends React.Component {
       <div className="App">
         <Router>
         <Navbar />
+        <Route exact path="/" component={HomePage}/>
         <Route path="/my-profile" component={UserProfile}/>
         <Route path="/profiles/:id" render= {(routerProps) => <FriendProfile id={routerProps.match.params.id}/>}/>
         <Route path="/login" component={HomePage}/>
